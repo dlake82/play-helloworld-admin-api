@@ -1,10 +1,15 @@
-from django.urls import path
-from rest_framework.urlpatterns import format_suffix_patterns
+from django.urls import path, include
+from rest_framework.routers import DefaultRouter
+
 from snippets import views
+from user.views import UserViewSet
 
+# Create a router and register our ViewSets with it.
+router = DefaultRouter()
+router.register(r"", views.SnippetViewSet, basename="snippet")
+router.register(r"users", UserViewSet, basename="user")
+
+# The API URLs are now determined automatically by the router.
 urlpatterns = [
-    path("", views.SnippetList.as_view()),
-    path("<int:pk>/", views.SnippetDetail.as_view()),
+    path("", include(router.urls)),
 ]
-
-urlpatterns = format_suffix_patterns(urlpatterns)

@@ -6,6 +6,7 @@ from rest_framework import routers
 
 from user import views
 
+
 router = routers.DefaultRouter()
 router.register(r"users", views.UserViewSet)
 router.register(r"groups", views.GroupViewSet)
@@ -13,8 +14,7 @@ router.register(r"groups", views.GroupViewSet)
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("/", include("user.urls")),
-    path("car/", include("user.urls")),
+    path("api-auth/", include("rest_framework.urls")),
     path("snippets/", include("snippets.urls")),
 ]
 
