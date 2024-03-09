@@ -4,7 +4,7 @@
 
 ## 장고 프로젝트 생성 방법
 
-`
+```
 # Create the project directory
 mkdir tutorial
 cd tutorial
@@ -22,11 +22,11 @@ django-admin startproject tutorial .  # Note the trailing '.' character
 cd tutorial
 django-admin startapp quickstart
 cd ..
-`
+```
 
 ## 슈퍼 유저 생성
 
-`
+```
 python manage.py migrate
 python manage.py createsuperuser --username admin --email admin@example.com
-`
+```
