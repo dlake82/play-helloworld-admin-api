@@ -1,8 +1,21 @@
-from django.urls import path
+from django.contrib import admin
+from django.urls import path, include
+
+from django.urls import include, path
 from rest_framework import routers
-from app import views
+
+from user import views
+
+router = routers.DefaultRouter()
+router.register(r"users", views.UserViewSet)
+router.register(r"groups", views.GroupViewSet)
+
 
 urlpatterns = [
-    path("", views.index, name="index"),
-    path("list", views.car_list_view, name="car_list"),
+    path("admin/", admin.site.urls),
+    path("/", include("user.urls")),
+    path("car/", include("user.urls")),
+    path("snippets/", include("snippets.urls")),
 ]
+
+urlpatterns += router.urls
