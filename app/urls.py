@@ -1,7 +1,6 @@
 from django.contrib import admin
 from django.urls import path, include
 
-from django.urls import include, path
 from rest_framework import routers
 
 from user import views
@@ -14,6 +13,7 @@ router.register(r"groups", views.GroupViewSet)
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+    # Add Log in Button in rest_framework page
     path("api-auth/", include("rest_framework.urls")),
     path("snippets/", include("snippets.urls")),
 ]
