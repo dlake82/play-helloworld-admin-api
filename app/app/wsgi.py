@@ -11,6 +11,7 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
+# 장고 환경 모듈 경로 설정
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "app.settings.local")
 
 application = get_wsgi_application()
