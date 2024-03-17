@@ -5,11 +5,11 @@ from rest_framework_simplejwt.views import (
     TokenBlacklistView,
 )
 
-from .views import TokenVerifyBlackView
+from .views import TokenBlackVerifyView
 
 urlpatterns = [
     path("login/", TokenObtainPairView.as_view(), name="token_obtain_pair"),
     path("refresh/", TokenRefreshView.as_view(), name="token_refresh"),
     path("logout/", TokenBlacklistView.as_view(), name="blacklist"),
-    path("verify/", TokenVerifyBlackView.as_view(), name="token_verify"),
+    path("verify/", TokenBlackVerifyView.as_view(), name="token_verify"),
 ]

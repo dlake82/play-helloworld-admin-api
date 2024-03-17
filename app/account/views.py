@@ -10,7 +10,7 @@ from rest_framework_simplejwt.views import TokenVerifyView
 from rest_framework_simplejwt.exceptions import InvalidToken, TokenError
 
 
-class TokenVerifyBlackView(TokenVerifyView):
+class TokenBlackVerifyView(TokenVerifyView):
     def post(self, request, *args, **kwargs):
         serializer: ModelSerializer = self.get_serializer(data=request.data)
 
@@ -29,4 +29,4 @@ class TokenVerifyBlackView(TokenVerifyView):
         except OutstandingToken.DoesNotExist:
             raise InvalidToken("Token does not exist")
 
-        return Response(serializer.validated_data, status=status.HTTP_200_OK)
+        return Response(status=status.HTTP_200_OK)

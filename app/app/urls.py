@@ -13,6 +13,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     # Add Log in Button in rest_framework page
     path("api-auth/", include("rest_framework.urls")),
+    # simple-jwt
     path("account/", include("account.urls")),
     path("snippets/", include("snippets.urls")),
 ]
