@@ -1,28 +1,28 @@
 # Use an official Python runtime as a parent image
 FROM python:3.12.2-slim-bullseye
 
+# Set work directory
+WORKDIR /app
+
 # Set environment varibles
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
-# Set work directory
-WORKDIR /app
-
 # Install system dependencies
-RUN apt-get update && apt-get install -y netcat
+RUN apt-get update && apt-get install -y curl vim netcat
+RUN apt-get clean
+
+# Upgrade pip
+RUN pip install --upgrade pip
 
 # Install poetry
-RUN pip install poetry
-
-# Copy project requirement files here to utilize Docker cache
 COPY pyproject.toml poetry.lock /app/
-
-# Install project dependencies
+RUN pip install poetry
 RUN poetry config virtualenvs.create false \
     && poetry install --no-interaction --no-ansi
 
 # Copy project
-COPY ./ /app/
+COPY ./app /app/
 
 ARG DJANGO_SETTINGS_MODULE
 ENV DJANGO_SETTINGS_MODULE ${DJANGO_SETTINGS_MODULE}

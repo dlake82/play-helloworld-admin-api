@@ -1,7 +1,7 @@
 from rest_framework_simplejwt.tokens import AccessToken, RefreshToken
 
 
-from app.utils.log import log
+from ..utils.log import log
 
 
 class JWTAuthenticationMiddleware:
@@ -19,8 +19,8 @@ class JWTAuthenticationMiddleware:
                 user = access_token.payload.get("user_id")
 
                 # HTTP Authorization 헤더에 JWT ACCESS 헤더 추가
-                request.META["HTTP_AUTHORIZATION"] = f"Bearer {access_token_value}"
-
+                request.META["Authorization"] = f"Bearer {access_token_value}"
+                print("Authorization")
             except Exception as e:
                 # JWT 토큰 디코딩 실패
                 log.info("Failed to decode JWT token")
