@@ -1,23 +1,19 @@
 from django.contrib import admin
 from django.urls import path, include
-from django.conf import settings
-from django.conf.urls.static import static
-
+from rest_framework_simplejwt.views import TokenVerifyView
 from rest_framework import routers
-
-
-from users import views
-
+from users.views import UserViewSet, GroupViewSet
 
 router = routers.DefaultRouter()
-router.register(r"users", views.UserViewSet)
-router.register(r"groups", views.GroupViewSet)
+router.register(r"users", UserViewSet)
+router.register(r"groups", GroupViewSet)
 
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     # Add Log in Button in rest_framework page
     path("api-auth/", include("rest_framework.urls")),
+    path("account/", include("account.urls")),
     path("snippets/", include("snippets.urls")),
 ]
 
